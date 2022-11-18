@@ -39,14 +39,11 @@ public class AdminController {
     @PostMapping("/register")
     public String performRegister(@ModelAttribute("user") @Valid User user,
                                   BindingResult bindingResult) {
-        System.err.println("TRYING TO CHECK THIS");
         userValidator.validate(user, bindingResult);
         if (bindingResult.hasErrors()) {
             System.err.println("ERROR");
-            System.err.println(bindingResult.toString());
             return "admin/register";
         }
-        System.err.println("TRYING TO REGISTER");
         userService.register(user);
         return "redirect:/admin/users";
     }

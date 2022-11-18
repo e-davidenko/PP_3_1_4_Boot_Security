@@ -29,6 +29,7 @@ public class UserDetails implements org.springframework.security.core.userdetail
     public UserDetails(User user) {
         this.user = user;
     }
+
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return user.getRole();
     }
@@ -66,4 +67,6 @@ public class UserDetails implements org.springframework.security.core.userdetail
     public User getUser() {
         return this.user;
     }
+
+
 }

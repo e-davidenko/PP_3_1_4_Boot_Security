@@ -2,6 +2,7 @@ package ru.kata.spring.boot_security.demo.dao;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import ru.kata.spring.boot_security.demo.models.User;
@@ -22,6 +23,14 @@ import java.util.Optional;
 public class UserDAOImpl implements UserDAO {
     @PersistenceContext
     private EntityManager entityManager;
+
+    private RoleRepository roleRepository;
+    @Lazy
+@Autowired
+    public UserDAOImpl(EntityManager entityManager, RoleRepository roleRepository) {
+        this.entityManager = entityManager;
+        this.roleRepository = roleRepository;
+    }
 
     @Override
     public List<User> getAllUsers() {

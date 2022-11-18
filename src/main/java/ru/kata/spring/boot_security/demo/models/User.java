@@ -41,8 +41,10 @@ public class User {
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_roles",
-    joinColumns = @JoinColumn(name = "user_id"))
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "roles_id"))
     private List<Role> roles;
 
     public User() {
@@ -113,6 +115,21 @@ public class User {
         }
 
         roles.add(role);
+    }
+
+
+    public String rolesToString() {
+
+        Role[] roles = getRole().toArray(new Role[getRole().size()]);
+
+        StringBuilder rolesList = new StringBuilder();
+
+        for (int i = 0; i < roles.length; i++) {
+
+            rolesList.append(roles[i].toString() + " ");
+        }
+
+        return String.valueOf(rolesList);
     }
 
 

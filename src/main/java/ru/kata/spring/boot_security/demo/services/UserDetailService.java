@@ -28,14 +28,10 @@ public class UserDetailService implements UserDetailsService {
 
     @Override
     public org.springframework.security.core.userdetails.UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.err.println("LOAD USER BY USERNAME STEP 1 " + username);
         Optional<User> user = userDAO.getUser(username);
-        System.err.println("LOAD USER BY USERNAME STEP 2");
         if (user.isEmpty()) {
-            System.err.println("NOT PRESENTO");
             throw new UsernameNotFoundException("User not found");
         }
-        System.err.println("TRYING TO REGISTER");
         return new UserDetails(user.get());
     }
 
