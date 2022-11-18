@@ -10,7 +10,7 @@
 <p th:text="${'Name: ' + user.name}">VALUE</p>
 <p th:text="${'Username: ' + user.getUsername()}">VALUE</p>
 <p th:text="${'Age: ' + user.getAge()}">VALUE</p>
-<p th:text="${'Role: ' + user.getRole()}">VALUE</p>
+<p th:text="${'Roles: ' + user.rolesToString()}">VALUE</p>
 <form action="/logout">
     <input type="submit" class="btn btn-dark" value="LOGOUT">
 </form>
