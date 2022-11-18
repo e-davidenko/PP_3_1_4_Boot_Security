@@ -48,10 +48,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void updateUser(int id, User user) {
         user.setId(id);
-        System.err.println(user.getUsername());
-        System.err.println("SERVICE UPDATE USER");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        System.err.println(passwordEncoder.encode(user.getPassword()));
         userDAO.updateUser(user);
     }
 
@@ -64,14 +61,12 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void register(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        System.out.println(user.getRole());
         userDAO.saveUser(user);
     }
 
     @Transactional
     public Optional<User> getCurrentUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        System.err.println("AUTH" + auth.getName());
         return userDAO.getUser(auth.getName());
     }
 

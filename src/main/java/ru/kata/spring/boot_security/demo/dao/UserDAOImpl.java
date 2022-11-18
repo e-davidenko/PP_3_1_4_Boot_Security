@@ -34,7 +34,6 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public List<User> getAllUsers() {
         List<User> list = entityManager.createQuery("FROM User", User.class).getResultList();
-        System.out.println(list.size());
         return list;
     }
 
@@ -55,11 +54,6 @@ public class UserDAOImpl implements UserDAO {
             Optional<User> user = Optional.ofNullable(entityManager.createQuery("FROM User where username like :username", User.class)
                     .setParameter("username", username)
                     .getSingleResult());
-            if (user.isPresent()) {
-                System.out.println("PRESENT USER");
-            } else {
-                System.err.println("NOT PRESENT");
-            }
             return user;
         } catch (Exception ignored) {
             return Optional.empty();
@@ -68,9 +62,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void updateUser(User user) {
-        System.err.println("TRYING TO MERGE COMMAND");
         entityManager.merge(user);
-        System.err.println("MERGE SUCCESS");
     }
 
     @Override

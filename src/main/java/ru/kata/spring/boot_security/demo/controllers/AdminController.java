@@ -32,7 +32,6 @@ public class AdminController {
 
     @GetMapping("/register")
     public String registerPage(@ModelAttribute("user") User user) {
-        System.err.println("ITS GET REGISTER");
         return "admin/register";
     }
 
@@ -41,7 +40,6 @@ public class AdminController {
                                   BindingResult bindingResult) {
         userValidator.validate(user, bindingResult);
         if (bindingResult.hasErrors()) {
-            System.err.println("ERROR");
             return "admin/register";
         }
         userService.register(user);
