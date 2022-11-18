@@ -26,7 +26,6 @@ public class UserDAOImpl implements UserDAO {
 
     private RoleRepository roleRepository;
     @Lazy
-@Autowired
     public UserDAOImpl(EntityManager entityManager, RoleRepository roleRepository) {
         this.entityManager = entityManager;
         this.roleRepository = roleRepository;
