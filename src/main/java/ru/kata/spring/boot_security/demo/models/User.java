@@ -1,10 +1,7 @@
 package ru.kata.spring.boot_security.demo.models;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +36,12 @@ public class User {
     @Column(name = "password")
     @NotBlank
     private String password;
+
+
+    @Column
+    @NotBlank
+    @Email
+    private String email;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
