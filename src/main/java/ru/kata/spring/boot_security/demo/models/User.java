@@ -129,7 +129,9 @@ public class User {
             rolesList.append(roles[i].toString() + " ");
         }
 
-        return String.valueOf(rolesList);
+        String rolesToReturn = String.valueOf(rolesList).replace("[", "").replace("]","");
+        System.err.println(rolesToReturn + " ROLES TO RETURN");
+        return rolesToReturn;
     }
 
 

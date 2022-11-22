@@ -94,4 +94,13 @@ public class AdminController {
         userService.removeUser(user);
         return "redirect:/admin/users";
     }
+
+
+
+    @GetMapping("/")
+    public String testPage(Model model, @ModelAttribute("user") User user) {
+        model.addAttribute("users", userService.getAllUsers());
+        model.addAttribute("current_user", userService.getCurrentUser().get());
+        return "admin/admin";
+    }
 }
