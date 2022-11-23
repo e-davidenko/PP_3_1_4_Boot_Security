@@ -31,7 +31,8 @@ public class UserController {
     @GetMapping()
     public String getUser(Model model) {
         User user = userService.getCurrentUser().get();
-        model.addAttribute("user", user);
+        System.err.println(user.getEmail());
+        model.addAttribute("current_user", user);
         return "/user/user";
     }
 }

@@ -1,5 +1,7 @@
 package ru.kata.spring.boot_security.demo.models;
 
+import org.hibernate.validator.constraints.UniqueElements;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.ArrayList;
@@ -12,7 +14,7 @@ import java.util.List;
  * Time: 20:55
  */
 @Entity
-@Table(name = "users")
+@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = {"email"}))
 public class User {
     @Id
     @Column(name = "id")
@@ -38,7 +40,7 @@ public class User {
     private String password;
 
 
-    @Column
+    @Column(name = "email", unique = true)
     @NotBlank
     @Email
     private String email;
@@ -57,6 +59,7 @@ public class User {
         this.name = name;
         this.age = age;
     }
+
 
 
 
@@ -138,4 +141,11 @@ public class User {
     }
 
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

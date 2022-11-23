@@ -30,32 +30,6 @@ public class AdminController {
         this.userService = userService;
     }
 
-    @GetMapping("/register")
-    public String registerPage(@ModelAttribute("user") User user) {
-        return "admin/register";
-    }
-
-    @PostMapping("/register")
-    public String performRegister(@ModelAttribute("user") @Valid User user,
-                                  BindingResult bindingResult) {
-        userValidator.validate(user, bindingResult);
-        if (bindingResult.hasErrors()) {
-            return "admin/register";
-        }
-        userService.register(user);
-        return "redirect:/admin/users";
-    }
-
-
-
-
-
-    @GetMapping("/users")
-    public String allUsers(Model model) {
-        model.addAttribute("users", userService.getAllUsers());
-        return "/admin/users";
-    }
-
 
 
 
@@ -64,7 +38,7 @@ public class AdminController {
     @GetMapping("/{id}/edit")
     public String editUser(Model model, @PathVariable("id") int id) {
         model.addAttribute("user", userService.getUser(id));
-        return "/admin/edit";
+        return "/admin/admin";
     }
 
     @PatchMapping("/{id}")
@@ -73,15 +47,9 @@ public class AdminController {
         if (bindingResult.hasErrors())
             return "/admin/edit";
         userService.updateUser(id, user);
-        return "redirect:/admin/users";
+        return "redirect:/admin/";
     }
-    //-----------------------------------------------------------------------------//
 
-    @GetMapping("/{id}")
-    public String showUser(@PathVariable("id") int id, Model model) {
-        model.addAttribute("user", userService.getUser(id));
-        return "/admin/show";
-    }
 
 
     //-----------------------------------------------------------------------------//
@@ -92,13 +60,13 @@ public class AdminController {
         System.out.println("Click delete");
         User user = userService.getUser(id);
         userService.removeUser(user);
-        return "redirect:/admin/users";
+        return "redirect:/admin/";
     }
 
 
 
     @GetMapping("/")
-    public String testPage(Model model, @ModelAttribute("user") User user) {
+    public String adminPage(Model model, @ModelAttribute("user") User user) {
         model.addAttribute("users", userService.getAllUsers());
         model.addAttribute("current_user", userService.getCurrentUser().get());
         return "admin/admin";

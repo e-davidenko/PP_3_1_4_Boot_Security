@@ -22,7 +22,7 @@ public class SuccessUserHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException {
        String roles = Arrays.toString(authentication.getAuthorities().toArray());
         if (roles.contains("ADMIN")) {
-            httpServletResponse.sendRedirect("/admin/users");
+            httpServletResponse.sendRedirect("/admin/");
         } else if (roles.contains("USER")) {
             httpServletResponse.sendRedirect("/user");
         }

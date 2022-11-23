@@ -51,7 +51,7 @@ public class UserDAOImpl implements UserDAO {
     public Optional<User> getUser(String username) {
         try {
             System.err.println("ITS HERE");
-            Optional<User> user = Optional.ofNullable(entityManager.createQuery("FROM User where username like :username", User.class)
+            Optional<User> user = Optional.ofNullable(entityManager.createQuery("FROM User where email like :username", User.class)
                     .setParameter("username", username)
                     .getSingleResult());
             return user;

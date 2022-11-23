@@ -41,7 +41,7 @@ public class UserDetails implements org.springframework.security.core.userdetail
 
     @Override
     public String getUsername() {
-        return this.user.getName();
+        return this.user.getEmail();
     }
 
     @Override
@@ -67,6 +67,8 @@ public class UserDetails implements org.springframework.security.core.userdetail
     public User getUser() {
         return this.user;
     }
+
+
 
 
 }

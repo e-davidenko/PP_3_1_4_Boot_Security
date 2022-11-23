@@ -1,26 +1,81 @@
 <!DOCTYPE html>
+<html lang="en">
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <head>
     <meta charset="UTF-8">
-    <title>User id</title>
+    <title>Admin page</title>
 </head>
-<body>
-<h1>User info: </h1>
-<br>
-<p th:text="${'Name: ' + user.name}">VALUE</p>
-<p th:text="${'Username: ' + user.getUsername()}">VALUE</p>
-<p th:text="${'Age: ' + user.getAge()}">VALUE</p>
-<p th:text="${'Roles: ' + user.rolesToString()}">VALUE</p>
-<form action="/logout">
-    <input type="submit" class="btn btn-dark" value="LOGOUT">
-</form>
+<body style="background-color: #ebeae7">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12" style="background-color: darkslategrey">
+            <nav class="navbar navbar-expand-xl">
+                <div class="container-fluid col-md-11">
+                    <div class="collapse navbar-collapse show" id="navbarDark">
+                        <ul class="navbar-nav me-auto mb-2 mb-xl-0">
+                            <li class="nav-item">
+                                <p class="nav-link disabled text-white"
+                                   th:utext="${'&lt;strong&gt; &lt;u&gt;' + current_user.getEmail() + '&lt;/strong&gt; &lt;/u&gt;' + ' with roles: ' + current_user.rolesToString()}">
+                                    p</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="container col-md-1">
+                    <a class="text-white" href="/logout">Logout</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <!--            -->
+        <div class="d-flex align-items-start">
+            <div class="nav flex-column nav-pills me-3 col-md-3 sidebar"
+                 style="background-color: white; height: 94vh; margin-left: -12px" id="v-pills-tab" role="tablist"
+                 aria-orientation="vertical">
+                <br/>
+                <a class="nav-link active" id="v-pills-profile-tab" data-bs-toggle="pill" href="#user_menu" role="tab"
+                   aria-controls="v-pills-profile" aria-selected="true">User</a>
 
+            </div>
+            <div class="tab-content col-md-9" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="user_menu" role="tabpanel"
+                     aria-labelledby="v-pills-home-tab">
+                    <!--                    USERS INFO-->
+                    <br/>
+                    <h1>User information-page</h1>
 
+                    <div class="card card-body">
+                        <div class="card-header border-secondary">About user</div>
+                        <table class="table caption-top table">
+                            <tr>
+                                <th>Name</th>
+                                <th>Username</th>
+                                <th>Password</th>
+                                <th>Age</th>
+                                <th>Role</th>
+                            </tr>
+                            <tr th:each="user : ${current_user}">
+                                <td th:utext="${user.name}">User Name</td>
+                                <td th:utext="${user.username}">LOGIN</td>
+                                <td>***********</td>
+                                <th th:utext="${user.age}">AGE</th>
+                                <td th:utext="${user.rolesToString()}">ROLE</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 
 </body>
-
-
-
 </html>
